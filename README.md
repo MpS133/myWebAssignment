@@ -47,10 +47,10 @@ open index.html
 
 ## Game Modes
 
-| Mode             | Budget                 | Stars                    | Progression                        
-|----------------  |------------------------|--------------------------|        
-|🎮 **Classic**   | Unlimited              | Always 3 ⭐⭐⭐         | All levels open                   
-|🏆 **Ranked**    | Strict per-level limit | Based on cost efficiency  | Must unlock sequentially  
+Mode	Budget	Stars	Progression
+🎮 **Classic**	Unlimited	Always 3 ⭐⭐⭐	All levels open
+🏆 **Ranked**	Strict per-level limit	Based on cost efficiency	Must unlock sequentially  
+
 
 In **Ranked** mode, spending under 50% of budget earns 3 stars, under 75% earns 2 stars, and completing within budget earns 1 star.
 
