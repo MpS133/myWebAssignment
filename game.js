@@ -3696,17 +3696,38 @@ window.addEventListener('resize',()=>{
   nodes.forEach(n=>{n.x*=sx;n.y*=sy;n.px=n.x;n.py=n.y;n.bx*=sx;n.by*=sy;});
   beams.forEach(b=>{const na=nodes[b.a],nb=nodes[b.b];if(na&&nb)b.restLen=Math.hypot(nb.x-na.x,nb.y-na.y);});
 });
-window.addEventListener('load',()=>{
-  BSAudio.loadSettings();
 
-  // ── V6: Ask player name once, persist it ─────────────────────
-  let pn = localStorage.getItem('bridgePlayerName');
-  if(!pn){
-    pn = prompt('Enter your name for the leaderboard:') || 'Anonymous';
-    localStorage.setItem('bridgePlayerName', pn.trim().slice(0,20)||'Anonymous');
+// ── V6: Submit name from the name modal ──────────────────────────
+function submitName(){
+  const input = document.getElementById('nameInput');
+  const val   = (input.value || '').trim().slice(0, 20);
+  if(!val){
+    input.classList.add('shake');
+    setTimeout(()=>input.classList.remove('shake'), 500);
+    document.getElementById('nameError').style.display = 'block';
+    input.focus();
+    return;
   }
-
+  localStorage.setItem('bridgePlayerName', val);
+  document.getElementById('nameModal').classList.add('hidden');
   resizeCanvas(); selectMat('steel');
   document.getElementById('gridBtn').classList.add('active-icon');
   resetLevel();
+}
+
+window.addEventListener('load',()=>{
+  BSAudio.loadSettings();
+
+  // ── V6: Require player name before game starts ────────────────
+  const pn = localStorage.getItem('bridgePlayerName');
+  if(pn){
+    // Name already saved — boot straight in
+    resizeCanvas(); selectMat('steel');
+    document.getElementById('gridBtn').classList.add('active-icon');
+    resetLevel();
+  } else {
+    // Show name modal — game does NOT start until name is submitted
+    document.getElementById('nameModal').classList.remove('hidden');
+    setTimeout(()=>document.getElementById('nameInput').focus(), 80);
+  }
 });

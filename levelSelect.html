@@ -62,6 +62,18 @@
     /* Grid */
     .level-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;max-width:700px;width:100%}
 
+    @media(max-width:640px){
+      .level-grid{grid-template-columns:repeat(2,1fr);gap:10px;max-width:100%}
+      .ls-title{font-size:28px}
+      .lc-num{font-size:26px}
+      .level-card{padding:12px 6px 10px}
+      .pill-btn{padding:7px 14px;font-size:12px}
+      .mode-tabs{flex-wrap:wrap;border-radius:16px}
+      .tab-btn{padding:7px 14px;font-size:13px}
+      .page{padding:14px 12px 32px}
+      .topbar{margin-bottom:10px}
+    }
+
     .level-card{background:rgba(255,255,255,0.09);backdrop-filter:blur(16px);
       border:1px solid rgba(255,255,255,0.14);border-radius:18px;
       padding:14px 8px 12px;text-align:center;cursor:pointer;
